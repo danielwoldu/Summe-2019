@@ -1,0 +1,56 @@
+Create schema studentschema; 
+
+Create view studentschema.studentview
+as
+select coursename, credits, coursedescription, certificatename
+from course 
+inner join certificatecourse 
+on course.coursekey=certificatecourse.coursekey
+inner join certificate
+on certificate.certificatekey=certificatecourse.certificatekey;
+
+Create schema instructorschema; 
+
+Create view studentschema.instructorview
+as
+select coursename, credits
+from course 
+inner join coursesection
+on course.coursekey=coursesection.coursekey
+
+create role studentrole;
+
+grant connect on database techcertificate to studentrole;
+
+grant usage on schema public to studentrole;
+
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO studentrole;
+GRANT UPDATE ON ALL TABLES IN SCHEMA public TO studentrole;
+GRANT INSERT ON ALL TABLES IN SCHEMA public TO studentrole;
+GRANT EXECUTE ON ALL FUNCTIONS in SCHEMA public TO studentrole;
+grant usage on schema studentschema to studentrole;
+grant select on all tables in schema studentschema to studentrole;
+
+grant connect on database techcertificate to instructorrole;
+
+grant usage on schema public to instructorrole;
+
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO instructorrole;
+GRANT UPDATE ON ALL TABLES IN SCHEMA public TO instructorrole;
+GRANT INSERT ON ALL TABLES IN SCHEMA public TO instructorrole;
+GRANT EXECUTE ON ALL FUNCTIONS in SCHEMA public TO instructorrole;
+
+create role Lynette with password 'P@ssw0rd1' Login inherit;
+grant studentrole to Lynette;
+Select addstudent 
+('Lynette', 
+'Taylor', 
+'ltaylor@hotmail.com', 
+'2065553043', 
+True, 
+null, 
+'123 West Brook Avenue', 
+'Seattle', 
+'Wa', 
+'98012', 
+'TaylorPass'); 

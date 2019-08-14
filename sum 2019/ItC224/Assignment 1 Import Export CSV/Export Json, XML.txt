@@ -1,0 +1,80 @@
+--create a table with Json as a datatype
+Create table JsonCertsAwarded
+(
+  CertsAwardedID serial primary key,
+  CertsAwarded Json
+);
+
+--insert some records
+Insert into CertsAwarded(CertsAwarded)
+Values('{"certname" : "Web Programming", "studentname" : "john Smith", "dateawarded" : "2019-06-15"}'),
+('{"certname" : "Computer Science", "studentname" : "marta haile", "dateawarded" : "2019-06-16"}'),
+('{"certname" : "Biology", "studentname" : "selemon amare", "dateawarded" : "2019-06-14"}'),
+('{"certname" : "chemistry", "studentname" : "Culu amora", "dateawarded" : "2019-06-10"}');
+
+
+--query the value of a field
+Select CertsAwarded ->>'CertsAwardedname' as "name" from JsonCertsAwarded;
+
+--creates an array of sorts putting each element on its own row
+Select Json_each(CertsAwarded) from JsonCertsAwarded;
+
+--returns the keys in the Json record
+Select Distinct Json_object_keys(CertsAwarded) from jsonCertsAwarded;
+
+--gets tne count of tests
+Select count(cast (CertsAwarded ->> 'CertsAwardednumber' as integer)) from JsonCertsAwarded;
+
+--returns the results of a query as Json
+--double click the results to get a little dialog box
+--copy and paste to a text editor to see the full results
+with j as
+(
+select certadminkey, firstname, lastname, email
+from person
+join certadmin using (personkey)
+)
+Select json_agg(j) from j;
+
+/****************************
+basic xml queries
+***********************/
+
+--create a table with an xml data type
+Create table xmlQuarternotes
+(
+ xmlquarternotesId serial primary key,
+ notes xml
+);
+
+--insert some xml
+Insert into xmlQuarternotes(notes)
+values('<note><quarter>Fall</quarter><year>2019</year><notetext>this was one long year</notetext></note>'),
+('<note><quarter>Winter</quarter><year>2019</year><notetext>this was one long year</notetext></note>'),
+('<note><quarter>Spring</quarter><year>2019</year><notetext>this was one long year</notetext></note>'),
+('<note><quarter>Sammer</quarter><year>2019</year><notetext>this was one long year</notetext></note>');
+
+Select * from xmlquarternotes;
+
+Select xmlelement(name name, notes) from xmlquarternotes;
+
+--return emails
+Select xpath('//email/text()', notes) from xmlquarternotes;
+
+--return ages
+Select xpath('//age/text()', notes)from xmlquarternotes;
+
+--put xml tags around query results
+Select xmlforest(certificatename, certificatedescription)
+from certificate;
+
+ --output a table as xmlf= fragment
+Select Table_to_xml('certadmin',True, True, '');
+
+--output query results as xml fragment
+Select query_to_xml('Select lastname, phone
+    from person
+    join certadmin using (personkey)'
+ 	,True, True, '') ;
+
+Select table_to_xmlschema('certadmin',True, True, '');

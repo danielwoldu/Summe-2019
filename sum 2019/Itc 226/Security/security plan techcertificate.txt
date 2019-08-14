@@ -1,0 +1,68 @@
+Security Plan for techcertificate
+Main Actors
+The primary actors who will have some interaction with the database are the student, instructor, applicants for admission and the general public.
+
+ Access to the database will be primarily through the web site. 
+
+There will also be at least two person designated as a system administrator.
+
+Use Cases:
+The general public should be able to see the services techcertificate offers and the summaries and reports of the courses ans certificates.
+
+This will be available without login or registration.
+
+Students need to register and then login. Once logged in they can register for classes and see the their courses and amounts of their own credits, and schedules and information about special roster and finalgrade. 
+
+They can also edit some of their own registration information such as first and last name, birth dates, address and emails and contact numbers.
+
+Instructors will need to register and login.
+
+Once logged in they can assigned for a course , they can see the history and status of their students and course content. They can also edit some content of course.
+
+Instructors will have a separate login. They will be able to view all tables, registered students.
+
+
+In addition they can manage applications approving, or disapproving student for admission.
+
+The system administrator will have full control over the database and be able to add and edit objects as well as perform system tasks such as back up and restore.
+
+Login and Authentication
+
+
+There will be two paradigms for login and authentication. Instructors will log in directly through a login role with their user name, then they will be assigned to the Instructor role. A separate login and user name will be used for the administrative role.
+
+The web site will have a separate login for instructors only.
+
+Students will be logged in through an students role. 
+
+The application will connect and login with the database. When the students log in on the web site, their user name and password will be validated against a login table in the database. 
+
+This process will be mitigated through stored procedures and functions in the database. 
+
+The student id will be used in Session to limit the viewing of the student to their own materials. All passwords will be hashed.
+
+Roles
+
+Each instructor will have a login role. In addition they will be members of the instructorrole. There will be an Admin role with superuser permissions
+
+In addition there will be a techcertificate application role to which all other registered students will belong by virtue of logging in through the web application.
+
+Schema:
+
+There will be tone other schema besides public: a application schema. Ideally all the user interaction will be through that schema.
+It should have views and procedures for
+ 
+courses offered
+reports and activities
+registering
+applying for a certificate
+
+viewing one’s own registration information filtered by id
+viewing applications filtered by id
+viewing courses filtered by id
+
+Permissions:
+The admin role will have superuser and owner permissions
+The Instructor role will have CONNECT, USAGE, SELECT, INSERT and EXECUTE on the public schema.
+The students role will have CONNECT, USAGE, SELECT, and EXECUTE on the students schema
+Individual instructor logins will have belong the the Instructor role.

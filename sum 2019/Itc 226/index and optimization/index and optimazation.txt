@@ -1,0 +1,366 @@
+[
+  {
+    "Plan": {
+      "Node Type": "Sort",
+      "Parallel Aware": false,
+      "Startup Cost": 56.99,
+      "Total Cost": 57.07,
+      "Plan Rows": 33,
+      "Plan Width": 87,
+      "Actual Startup Time": 0.39,
+      "Actual Total Time": 0.391,
+      "Actual Rows": 33,
+      "Actual Loops": 1,
+      "Output": [
+        "person.lastname",
+        "person.firstname",
+        "course.coursename",
+        "coursesection.sectionkey",
+        "quarter.quartername",
+        "roster.finalgrade"
+      ],
+      "Sort Key": [
+        "person.lastname"
+      ],
+      "Sort Method": "quicksort",
+      "Sort Space Used": 28,
+      "Sort Space Type": "Memory",
+      "Plans": [
+        {
+          "Node Type": "Hash Join",
+          "Parent Relationship": "Outer",
+          "Parallel Aware": false,
+          "Join Type": "Inner",
+          "Startup Cost": 45.17,
+          "Total Cost": 56.16,
+          "Plan Rows": 33,
+          "Plan Width": 87,
+          "Actual Startup Time": 0.293,
+          "Actual Total Time": 0.332,
+          "Actual Rows": 33,
+          "Actual Loops": 1,
+          "Output": [
+            "person.lastname",
+            "person.firstname",
+            "course.coursename",
+            "coursesection.sectionkey",
+            "quarter.quartername",
+            "roster.finalgrade"
+          ],
+          "Inner Unique": true,
+          "Hash Cond": "(coursesection.coursekey = course.coursekey)",
+          "Plans": [
+            {
+              "Node Type": "Nested Loop",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Join Type": "Inner",
+              "Startup Cost": 43.54,
+              "Total Cost": 54.43,
+              "Plan Rows": 33,
+              "Plan Width": 59,
+              "Actual Startup Time": 0.248,
+              "Actual Total Time": 0.283,
+              "Actual Rows": 33,
+              "Actual Loops": 1,
+              "Output": [
+                "person.lastname",
+                "person.firstname",
+                "roster.finalgrade",
+                "coursesection.sectionkey",
+                "coursesection.coursekey",
+                "quarter.quartername"
+              ],
+              "Inner Unique": false,
+              "Plans": [
+                {
+                  "Node Type": "Nested Loop",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Join Type": "Inner",
+                  "Startup Cost": 0,
+                  "Total Cost": 3.28,
+                  "Plan Rows": 1,
+                  "Plan Width": 40,
+                  "Actual Startup Time": 0.018,
+                  "Actual Total Time": 0.022,
+                  "Actual Rows": 1,
+                  "Actual Loops": 1,
+                  "Output": [
+                    "coursesection.sectionkey",
+                    "coursesection.coursekey",
+                    "quarter.quartername"
+                  ],
+                  "Inner Unique": true,
+                  "Join Filter": "(coursesection.quarterkey = quarter.quarterkey)",
+                  "Rows Removed by Join Filter": 2,
+                  "Plans": [
+                    {
+                      "Node Type": "Seq Scan",
+                      "Parent Relationship": "Outer",
+                      "Parallel Aware": false,
+                      "Relation Name": "coursesection",
+                      "Schema": "public",
+                      "Alias": "coursesection",
+                      "Startup Cost": 0,
+                      "Total Cost": 2.19,
+                      "Plan Rows": 1,
+                      "Plan Width": 12,
+                      "Actual Startup Time": 0.009,
+                      "Actual Total Time": 0.012,
+                      "Actual Rows": 1,
+                      "Actual Loops": 1,
+                      "Output": [
+                        "coursesection.sectionkey",
+                        "coursesection.coursekey",
+                        "coursesection.instructorkey",
+                        "coursesection.sectionyear",
+                        "coursesection.pricehistorykey",
+                        "coursesection.quarterkey"
+                      ],
+                      "Filter": "(coursesection.sectionkey = 16)",
+                      "Rows Removed by Filter": 94
+                    },
+                    {
+                      "Node Type": "Seq Scan",
+                      "Parent Relationship": "Inner",
+                      "Parallel Aware": false,
+                      "Relation Name": "quarter",
+                      "Schema": "public",
+                      "Alias": "quarter",
+                      "Startup Cost": 0,
+                      "Total Cost": 1.04,
+                      "Plan Rows": 4,
+                      "Plan Width": 36,
+                      "Actual Startup Time": 0.008,
+                      "Actual Total Time": 0.008,
+                      "Actual Rows": 3,
+                      "Actual Loops": 1,
+                      "Output": [
+                        "quarter.quarterkey",
+                        "quarter.quartername"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Node Type": "Hash Join",
+                  "Parent Relationship": "Inner",
+                  "Parallel Aware": false,
+                  "Join Type": "Inner",
+                  "Startup Cost": 43.54,
+                  "Total Cost": 50.82,
+                  "Plan Rows": 33,
+                  "Plan Width": 23,
+                  "Actual Startup Time": 0.229,
+                  "Actual Total Time": 0.258,
+                  "Actual Rows": 33,
+                  "Actual Loops": 1,
+                  "Output": [
+                    "person.lastname",
+                    "person.firstname",
+                    "roster.finalgrade",
+                    "roster.sectionkey"
+                  ],
+                  "Inner Unique": false,
+                  "Hash Cond": "(person.personkey = student.personkey)",
+                  "Plans": [
+                    {
+                      "Node Type": "Seq Scan",
+                      "Parent Relationship": "Outer",
+                      "Parallel Aware": false,
+                      "Relation Name": "person",
+                      "Schema": "public",
+                      "Alias": "person",
+                      "Startup Cost": 0,
+                      "Total Cost": 6.15,
+                      "Plan Rows": 215,
+                      "Plan Width": 17,
+                      "Actual Startup Time": 0.008,
+                      "Actual Total Time": 0.022,
+                      "Actual Rows": 215,
+                      "Actual Loops": 1,
+                      "Output": [
+                        "person.personkey",
+                        "person.lastname",
+                        "person.firstname",
+                        "person.email",
+                        "person.address",
+                        "person.city",
+                        "person.state",
+                        "person.postalcode",
+                        "person.phone",
+                        "person.dateadded"
+                      ]
+                    },
+                    {
+                      "Node Type": "Hash",
+                      "Parent Relationship": "Inner",
+                      "Parallel Aware": false,
+                      "Startup Cost": 43.12,
+                      "Total Cost": 43.12,
+                      "Plan Rows": 33,
+                      "Plan Width": 14,
+                      "Actual Startup Time": 0.214,
+                      "Actual Total Time": 0.214,
+                      "Actual Rows": 33,
+                      "Actual Loops": 1,
+                      "Output": [
+                        "student.personkey",
+                        "roster.finalgrade",
+                        "roster.sectionkey"
+                      ],
+                      "Hash Buckets": 1024,
+                      "Original Hash Buckets": 1024,
+                      "Hash Batches": 1,
+                      "Original Hash Batches": 1,
+                      "Peak Memory Usage": 10,
+                      "Plans": [
+                        {
+                          "Node Type": "Hash Join",
+                          "Parent Relationship": "Outer",
+                          "Parallel Aware": false,
+                          "Join Type": "Inner",
+                          "Startup Cost": 6.5,
+                          "Total Cost": 43.12,
+                          "Plan Rows": 33,
+                          "Plan Width": 14,
+                          "Actual Startup Time": 0.153,
+                          "Actual Total Time": 0.207,
+                          "Actual Rows": 33,
+                          "Actual Loops": 1,
+                          "Output": [
+                            "student.personkey",
+                            "roster.finalgrade",
+                            "roster.sectionkey"
+                          ],
+                          "Inner Unique": true,
+                          "Hash Cond": "(roster.studentkey = student.studentkey)",
+                          "Plans": [
+                            {
+                              "Node Type": "Seq Scan",
+                              "Parent Relationship": "Outer",
+                              "Parallel Aware": false,
+                              "Relation Name": "roster",
+                              "Schema": "public",
+                              "Alias": "roster",
+                              "Startup Cost": 0,
+                              "Total Cost": 36.54,
+                              "Plan Rows": 33,
+                              "Plan Width": 14,
+                              "Actual Startup Time": 0.09,
+                              "Actual Total Time": 0.137,
+                              "Actual Rows": 33,
+                              "Actual Loops": 1,
+                              "Output": [
+                                "roster.rosterkey",
+                                "roster.sectionkey",
+                                "roster.studentkey",
+                                "roster.finalgrade"
+                              ],
+                              "Filter": "(roster.sectionkey = 16)",
+                              "Rows Removed by Filter": 1930
+                            },
+                            {
+                              "Node Type": "Hash",
+                              "Parent Relationship": "Inner",
+                              "Parallel Aware": false,
+                              "Startup Cost": 4,
+                              "Total Cost": 4,
+                              "Plan Rows": 200,
+                              "Plan Width": 8,
+                              "Actual Startup Time": 0.049,
+                              "Actual Total Time": 0.049,
+                              "Actual Rows": 200,
+                              "Actual Loops": 1,
+                              "Output": [
+                                "student.personkey",
+                                "student.studentkey"
+                              ],
+                              "Hash Buckets": 1024,
+                              "Original Hash Buckets": 1024,
+                              "Hash Batches": 1,
+                              "Original Hash Batches": 1,
+                              "Peak Memory Usage": 16,
+                              "Plans": [
+                                {
+                                  "Node Type": "Seq Scan",
+                                  "Parent Relationship": "Outer",
+                                  "Parallel Aware": false,
+                                  "Relation Name": "student",
+                                  "Schema": "public",
+                                  "Alias": "student",
+                                  "Startup Cost": 0,
+                                  "Total Cost": 4,
+                                  "Plan Rows": 200,
+                                  "Plan Width": 8,
+                                  "Actual Startup Time": 0.009,
+                                  "Actual Total Time": 0.026,
+                                  "Actual Rows": 200,
+                                  "Actual Loops": 1,
+                                  "Output": [
+                                    "student.personkey",
+                                    "student.studentkey"
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Node Type": "Hash",
+              "Parent Relationship": "Inner",
+              "Parallel Aware": false,
+              "Startup Cost": 1.28,
+              "Total Cost": 1.28,
+              "Plan Rows": 28,
+              "Plan Width": 36,
+              "Actual Startup Time": 0.036,
+              "Actual Total Time": 0.036,
+              "Actual Rows": 28,
+              "Actual Loops": 1,
+              "Output": [
+                "course.coursename",
+                "course.coursekey"
+              ],
+              "Hash Buckets": 1024,
+              "Original Hash Buckets": 1024,
+              "Hash Batches": 1,
+              "Original Hash Batches": 1,
+              "Peak Memory Usage": 10,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Relation Name": "course",
+                  "Schema": "public",
+                  "Alias": "course",
+                  "Startup Cost": 0,
+                  "Total Cost": 1.28,
+                  "Plan Rows": 28,
+                  "Plan Width": 36,
+                  "Actual Startup Time": 0.026,
+                  "Actual Total Time": 0.029,
+                  "Actual Rows": 28,
+                  "Actual Loops": 1,
+                  "Output": [
+                    "course.coursename",
+                    "course.coursekey"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "Triggers": []
+  }
+]

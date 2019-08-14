@@ -1,0 +1,74 @@
+"dbms","table_catalog","table_schema","table_name","column_name","ordinal_position","data_type","character_maximum_length","constraint_type","table_schema-2","table_name-2","column_name-2"
+"postgresql","communityassist","public","businessrule","businessruletext",2,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","donation","personkey",2,"integer",NULL,"FOREIGN KEY","public","person","personkey"
+"postgresql","communityassist","public","donation","donationamount",3,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","donation","donationdate",4,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","donation","donationvalidation",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","employee","personkey",2,"integer",NULL,"FOREIGN KEY","public","person","personkey"
+"postgresql","communityassist","public","employeeposition","employeekey",2,"integer",NULL,"FOREIGN KEY","public","employee","employeekey"
+"postgresql","communityassist","public","employeeposition","positionkey",3,"integer",NULL,"FOREIGN KEY","public","jobposition","positionkey"
+"postgresql","communityassist","public","employeeposition","employeepositionstartdate",4,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","grantapplication","personkey",3,"integer",NULL,"FOREIGN KEY","public","person","personkey"
+"postgresql","communityassist","public","grantapplication","granttypekey",4,"integer",NULL,"FOREIGN KEY","public","granttype","granttypekey"
+"postgresql","communityassist","public","grantapplication","grantapplicationamount",5,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","grantapplication","grantapplicationexplain",6,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","grantapplication","grantapplicationdate",2,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","grantapplication","grantapplicationconfirm",7,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","grantreview","grantapplicationkey",2,"integer",NULL,"FOREIGN KEY","public","grantapplication","grantapplicationkey"
+"postgresql","communityassist","public","grantreview","employeekey",3,"integer",NULL,"FOREIGN KEY","public","employee","employeekey"
+"postgresql","communityassist","public","grantreview","grantreviewcomment",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","grantreview","grantreviewdate",4,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","grantstatus","grantapplicationkey",2,"integer",NULL,"FOREIGN KEY","public","grantapplication","grantapplicationkey"
+"postgresql","communityassist","public","grantstatus","grantstatusfinalallocation",4,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","grantstatus","statuskey",3,"integer",NULL,"FOREIGN KEY","public","status","statuskey"
+"postgresql","communityassist","public","granttype","granttypename",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","granttype","granttypeonetimemax",3,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","granttype","granttypelifetimemax",4,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","jobposition","positionname",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","jobposition","positiondescript",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","loginhistory","loginkey",2,"integer",NULL,"FOREIGN KEY","public","logintable","loginkey"
+"postgresql","communityassist","public","loginhistory","logintimestamp",3,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","logintable","personkey",2,"integer",NULL,"FOREIGN KEY","public","person","personkey"
+"postgresql","communityassist","public","logintable","personkey",2,"integer",NULL,"FOREIGN KEY","public","person","personkey"
+"postgresql","communityassist","public","logintable","personusername",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","logintable","personpassword",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","person","personlastname",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","person","personfirstname",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","person","personemail",4,"character varying",255,"UNIQUE",NULL,NULL,NULL
+"postgresql","communityassist","public","person","personprimaryphone",5,"character",13,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","person","persondateadded",6,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","personaddress","personkey",2,"integer",NULL,"FOREIGN KEY","public","person","personkey"
+"postgresql","communityassist","public","personaddress","personaddressstreet",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","personaddress","personaddresszipcode",6,"character",11,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","personaddress","personaddressapt",7,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","personaddress","personaddresscity",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","personaddress","personaddressstate",5,"character",2,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","status","statusname",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","businessrule","businessrulekey",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","donation","donationkey",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","employee","employeekey",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","employeeposition","employeepositionkey",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","grantapplication","grantapplicationkey",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","grantreview","grantreviewkey",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","grantstatus","grantstatuskey",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","granttype","granttypekey",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","jobposition","positionkey",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","loginhistory","loginhistorykey",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","logintable","loginkey",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","person","personkey",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","personaddress","personaddresskey",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","status","statuskey",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","employee2","personlastname",2,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","employee2","personfirstname",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","employee2","personemail",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","employee2","employeeid",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","granttype2","granttypename",1,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","granttype2","granttypeonetimemax",2,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","granttype2","granttypelifemax",3,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","population","country",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","population","logkey",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","population","logtimestamp",2,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","meeting","personkey",2,"integer",NULL,"FOREIGN KEY","public","person","personkey"
+"postgresql","communityassist","public","meeting","meetingkey",1,"bigint",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","communityassist","public","jobposition2","positionname",1,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","communityassist","public","jobposition2","positiondescription",2,"text",NULL,NULL,NULL,NULL,NULL
